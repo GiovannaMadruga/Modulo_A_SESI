@@ -4,10 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulário de Validação</title>
+
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            background: linear-gradient(270deg,rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+            text-align: center;
+
+        }
+    </style>
 </head>
 <body>
     <form>
-
         <input type="text" id="nome" placeholder="Nome">
         <p id="errorName"></p>
 
@@ -23,14 +32,53 @@
     <script>
         const nome = document.getElementById("nome");
         const email = document.getElementById("email");
-        const senha = document.getElementById("senha");
+        const senha = document.getElementById("password");
         const botao = document.getElementById("botao");
 
         // Expressões regulares para email e senha
-        const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;    
-        const regexSenha = /^(?=.*[a-zA-Z])(?=.*[\W_]).{8,}$/;
-        
-    </script>
 
+        const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const regexSenha = /^(?=.*[a-zA-Z])(?=.*[\W_]).{8,}$/;
+
+        function validar(){
+
+            let valido = true;
+
+            //Validação campo nome
+            if(nome.value===""){
+                errorName.innerText = "Nome obrigatório";
+                valido = false;
+            }
+            else {
+                errorName.innerText = " ";
+            }
+
+            //Validação do campo email
+            if(!regexEmail.test(email.value)){
+                errorEmail.innerText = "Email inválido"
+                valido = false;
+            }
+            else {
+                errorEmail.innerText= "";
+            }
+
+            botao.disabled = !valido;
+
+            //Desafio: Criar validação do campo senha.
+
+            //Validação campo senha
+            if(!regexSenha.test(senha.value)){
+                errorSenha.innerText = "Senha inválida (Deve conter no minimo 8 caracteres, 1 letra maiúscula e minúscula e um símbolo especial)";
+                valido = false;
+            }
+            else {
+                errorSenha.innerText= "";
+            }
+        }
+
+        nome.addEventListener("input", validar);
+        email.addEventListener("input", validar);
+        senha.addEventListener("input", validar);
+    </script>
 </body>
 </html>
