@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Efeito Blur</title>
     <style>
-        
+
         * {
             margin: 0;
             padding: 0;
@@ -28,35 +28,36 @@
 
         .codigo span{
             color: white;
-            font-size: 80px;
+            font-size: clamp(45px, 80px, 80px);
             filter: blur(20px);
             transition: 0.3s;
         }
 
+        /* Número em Foco */
         .codigo span:hover,
         .codigo span:active {
             filter: blur(0);
             transform: scale(1.08);
         }
 
-        /* Número da direita*/
+        /* Número da direita */
         .codigo span:hover + span {
             filter: blur(6px);
         }
 
-        /* Segundo número da esquerda */
+        /* Segundo número da direita */
         .codigo span:hover + span + span {
             filter: blur(10px);
         }
 
-        /*ATALHOS: SHIFT + ALT + A */ /* CTRL + : */
+        /*ATALHOS: SHIFT + ALT + A */ /* CTRl + ; */
         /* Número da esquerda */
         .codigo span:has(+ span:hover){
             filter: blur(6px);
         }
-
+        
         /* Segundo Número da esquerda */
-        .codigo span:has(+ span:hover){
+        .codigo span:has(+ span + span:hover){
             filter: blur(10px);
         }
     </style>
